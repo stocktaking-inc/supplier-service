@@ -9,5 +9,8 @@ public class Supplier
     public string? contact_person { get; set; }
     public string? email { get; set; }
     public string? phone { get; set; }
+    [Required]
     public string status { get; set; } = "active";
+
+    public ICollection<Good>? Goods { get; set; }
 }

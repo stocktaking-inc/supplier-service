@@ -18,7 +18,7 @@ public class SuppliersController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAll([FromQuery] int page = 1, [FromQuery] int limit = 10)
+    public async Task<IActionResult> GetAll( int page = 1, int limit = 10)
     {
         var suppliers = await _context.Suppliers
             .Skip((page - 1) * limit)
@@ -32,13 +32,13 @@ public class SuppliersController : ControllerBase
     public async Task<IActionResult> Get(int id)
     {
         var supplier = await _context.Suppliers.FindAsync(id);
-        if (supplier == null) return NotFound(new { code = "NOT_FOUND", message = "Поставщик не найден" });
+        if (supplier == null) return NotFound(new { message = "Поставщик не найден" });
 
         return Ok(supplier);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] Supplier supplier)
+    public async Task<IActionResult> Create( Supplier supplier)
     {
         _context.Suppliers.Add(supplier);
         await _context.SaveChangesAsync();
@@ -46,10 +46,10 @@ public class SuppliersController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Update(int id, [FromBody] Supplier updated)
+    public async Task<IActionResult> Update(int id, Supplier updated)
     {
         var supplier = await _context.Suppliers.FindAsync(id);
-        if (supplier == null) return NotFound(new { code = "NOT_FOUND", message = "Поставщик не найден" });
+        if (supplier == null) return NotFound(new { message = "Поставщик не найден" });
 
         supplier.name = updated.name;
         supplier.contact_person = updated.contact_person;
@@ -65,7 +65,7 @@ public class SuppliersController : ControllerBase
     public async Task<IActionResult> Delete(int id)
     {
         var supplier = await _context.Suppliers.FindAsync(id);
-        if (supplier == null) return NotFound(new { code = "NOT_FOUND", message = "Поставщик не найден" });
+        if (supplier == null) return NotFound(new { message = "Поставщик не найден" });
 
         _context.Suppliers.Remove(supplier);
         await _context.SaveChangesAsync();
@@ -78,7 +78,7 @@ public class SuppliersController : ControllerBase
         var exists = await _context.Suppliers.AnyAsync(s => s.supplier_id == id);
         if (!exists)
         {
-            return NotFound(new { code = "NOT_FOUND", message = "Поставщик не найден" });
+            return NotFound(new { message = "Поставщик не найден" });
         }
         var items = new[]
         {

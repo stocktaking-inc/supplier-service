@@ -16,9 +16,13 @@
 
 ### :clipboard: Получить список всех поставщиков
 
+```bash
+GET /suppliers
+```
+
 **Пример ответа:**
+
 ```json
-[
   {
     "id": 1,
     "name": "TechSupplier Inc.",
@@ -28,7 +32,6 @@
     "category": "Electronics",
     "status": "active"
   }
-]
 ```
 ### :page_facing_up: Получить поставщика по ID
 
@@ -51,12 +54,54 @@ GET /suppliers/{id}
 **Если не найден:**
 ```json
 {
-  "code": "NOT_FOUND",
   "message": "Поставщик не найден"
 }
 ```
 ### :heavy_plus_sign: Создать нового поставщика
 
+```bash
+POST /suppliers
+```
+
+**Пример тела запроса:**
+```json
+{
+  "name": "New Supplier",
+  "contactPerson": "Alice Smith",
+  "email": "alice@newsupplier.com",
+  "phone": "111-222-3333",
+  "category": "Office Supplies",
+  "status": "active"
+}
+```
+**Пример ответа:**
+```json
+{
+  "id": 2,
+  "name": "New Supplier",
+  "contactPerson": "Alice Smith",
+  "email": "alice@newsupplier.com",
+  "phone": "111-222-3333",
+  "category": "Office Supplies",
+  "status": "active"
+}
+```
+### :pencil2: Обновить поставщика
+
+```bash
+PUT /suppliers/{id}
+```
+**Пример:**
+```json
+{
+  "name": "Updated Supplier",
+  "contactPerson": "Alice Smith",
+  "email": "alice@updated.com",
+  "phone": "000-111-2222",
+  "category": "Electronics",
+  "status": "inactive"
+}
+```
 
 ### :x: Удалить поставщика
 
@@ -65,13 +110,12 @@ DELETE /suppliers/{id}
 ```
 
 **Ответ:**
-```c#
+```css
 204 No Content
 ```
 **Если не найден:**
 ```json
 {
-  "code": "NOT_FOUND",
   "message": "Поставщик не найден"
 }
 ```
@@ -84,7 +128,6 @@ GET /suppliers/{id}/items
 
 **Пример ответа:**
 ```json
-[
   {
     "id": 1,
     "name": "Laptop",
@@ -94,7 +137,6 @@ GET /suppliers/{id}/items
     "location": "Main Warehouse",
     "status": "available"
   }
-]
 ```
 **Ошибки:**
 + 404 Not Found: поставщик не найден
