@@ -16,10 +16,7 @@
 
 Настройте строку подключения в appsettings.json
 
-Примените миграции:
-```bash
-dotnet ef database update
-```
+
 Запустите программу:
 
 ```bash
