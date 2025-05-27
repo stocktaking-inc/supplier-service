@@ -8,13 +8,13 @@ public class Good
     public int id { get; set; }
 
     [Required]
-    public int supplierId { get; set; }
+    public int supplier_id { get; set; }
 
     [Required]
-    public int itemId { get; set; }
+    public int item_id { get; set; }
 
     [Required]
-    public int warehouseId { get; set; }
+    public int warehouse_id { get; set; }
 
     [Required]
     [Range(0, int.MaxValue)]
@@ -22,10 +22,10 @@ public class Good
 
     [Required]
     [Column(TypeName = "decimal(10,2)")]
-    public decimal purchasePrice { get; set; }
+    public decimal purchase_price { get; set; }
 
     [Required]
-    public DateTime receivedDate { get; set; } = DateTime.UtcNow;
+    public DateTime received_date { get; set; } = DateTime.UtcNow;
 
     public Supplier? Supplier { get; set; }
     public Item? Item { get; set; }

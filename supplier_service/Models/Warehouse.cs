@@ -12,7 +12,7 @@ public class Warehouse
 
     public string? address { get; set; }
 
-    public bool isActive { get; set; } = true;
+    public bool is_active { get; set; } = true;
 
     public ICollection<Good>? Goods { get; set; }
 }

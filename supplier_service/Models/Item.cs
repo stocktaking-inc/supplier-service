@@ -15,7 +15,7 @@ public class Item
     public string article { get; set; } = default!;
 
     [Required]
-    public int categoryId { get; set; }
+    public int category_id { get; set; }
 
     public ICollection<Good>? Goods { get; set; }
 }
