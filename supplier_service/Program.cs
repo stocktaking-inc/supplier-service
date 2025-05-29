@@ -1,8 +1,8 @@
+using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using supplier_service.Data;
-using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 

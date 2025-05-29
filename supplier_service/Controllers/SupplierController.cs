@@ -20,7 +20,7 @@ public class SuppliersController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAll( int page = 1, int limit = 10)
+    public async Task<IActionResult> GetAll(int page = 1, int limit = 10)
     {
         var suppliers = await _context.Suppliers
             .Skip((page - 1) * limit)
@@ -45,12 +45,10 @@ public class SuppliersController : ControllerBase
     {
         var supplier = await _context.Suppliers.FindAsync(id);
         if (supplier == null)
-        {
             return NotFound(new ErrorResponse
             {
                 Message = "Поставщик не найден"
             });
-        }
 
         var result = new SupplierResponseDto
         {
@@ -69,12 +67,10 @@ public class SuppliersController : ControllerBase
     public async Task<IActionResult> Create(SupplierCreateDto dto)
     {
         if (!ModelState.IsValid)
-        {
             return BadRequest(new ErrorResponse
             {
                 Message = "Неверный формат данных"
             });
-        }
 
         var supplier = new Supplier
         {
@@ -105,21 +101,17 @@ public class SuppliersController : ControllerBase
     public async Task<IActionResult> Update(int id, SupplierUpdateDto dto)
     {
         if (!ModelState.IsValid)
-        {
             return BadRequest(new ErrorResponse
             {
                 Message = "Неверный формат данных"
             });
-        }
 
         var supplier = await _context.Suppliers.FindAsync(id);
         if (supplier == null)
-        {
             return NotFound(new ErrorResponse
             {
                 Message = "Поставщик не найден"
             });
-        }
 
         supplier.name = dto.Name;
         supplier.contact_person = dto.Contact_person;
@@ -147,12 +139,10 @@ public class SuppliersController : ControllerBase
     {
         var supplier = await _context.Suppliers.FindAsync(id);
         if (supplier == null)
-        {
             return NotFound(new ErrorResponse
             {
                 Message = "Поставщик не найден"
             });
-        }
 
         _context.Suppliers.Remove(supplier);
         await _context.SaveChangesAsync();
@@ -165,12 +155,10 @@ public class SuppliersController : ControllerBase
     {
         var supplierExists = await _context.Suppliers.AnyAsync(s => s.supplier_id == id);
         if (!supplierExists)
-        {
             return NotFound(new ErrorResponse
             {
                 Message = "Поставщик не найден"
             });
-        }
 
         try
         {
